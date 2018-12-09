@@ -1,8 +1,5 @@
 # ~ Area4 Package by RDIL ~
-# This package and source should be compatible with Python 3.4 and up!
-
-# Imports:
-import random
+# This branch is meant to support Python 2.7.15!
 
 # Package info variables:
 name = "area4"
@@ -45,7 +42,7 @@ divider31 = str("1010101010101010101010")
 divider32 = str("<><><><><><><><><><><>")
 divider33 = str("^,^,^,^,^,^,^,^,^,^,^,^")
 divider34 = str("&*&*&*&*&*&*&*&*&*&*&*&")
-divider35 = str(random.randint(0, 99999999999999999999999))
+divider35 = None  # (not Python2 supported)
 divider36 = str("```````````````````````")
 divider37 = str("aaaaaaaaaaaa")
 divider38 = str("AAAAAAAAAAAA")
@@ -225,63 +222,30 @@ custom_div = str("")
 
 # Functions:
 def div1():
-	"""
-	Returns the divider ------------------------
 
-	:return: divider1
-	"""
 	return divider1
 
 def div2():
-	"""
-	Returns the divider ________________________
-	:return: divider2
-	"""
 
 	return divider2
 
 def div3():
-	"""
-	Returns the divider ........................
-
-	:return: divider3
-	"""
 
 	return divider3
 
 def div4():
-	"""
-	Returns the divider ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-
-	:return: divider4
-	"""
 
 	return divider4
 
 def div5():
-	"""
-	Returns the divider ⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️
-
-	:return: divider5
-	"""
 
 	return divider5
 
 def div6():
-	"""
-	Returns the divider ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-
-	:return: divider6
-	"""
 
 	return divider6
 
 def div7():
-	"""
-	Returns the divider ========================
-
-	:return: divider7
-	"""
 
 	return divider7
 
@@ -2041,140 +2005,39 @@ def div202():
 	return divider202
 
 def div203():
-	"""
-	Returns the divider 🕴🕴🕴🕴🕴🕴🕴🕴🕴🕴🕴🕴🕴🕴
-	
-	:return: divider203
-	"""
-	
+
 	return divider203
 
 def div204():
-	"""
-	Returns the divider 🎲 🎲 🎲 🎲 🎲 🎲 🎲 🎲
-
-	:return: divider204
-	"""
 
 	return divider204
 
 def div205():
-	"""
-	Returns the divider 🎳🎳🎳🎳🎳🎳🎳🎳🎳🎳🎳
-
-	:return: divider205
-	"""
 
 	return divider205
 
 def div206():
-	"""
-	Returns the divider 🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪
 
-	:return: divider206
-	"""
 
 	return divider206
 
 def div207():
-	"""
-	Returns the divider ⛄️⛄️⛄️⛄️⛄️⛄️⛄️⛄️⛄️⛄️
-
-	:return: divider207
-	"""
 
 	return divider207
 
 def div208():
-	"""
-	Returns the divider 🥔🥔🥔🥔🥔🥔🥔🥔🥔🥔🥔🥔
-	
-	:return: divider208
-	"""
-	
+
 	return divider208
 
 def div209():
-	"""
-	Returns the divider 🍤🍤🍤🍤🍤🍤🍤🍤🍤🍤🍤🍤
-	
-	:return: divider209
-	"""
-	
+
 	return divider209
 
-def customdiv():
-    return custom_div
-
-def make_div(unit: str, length: int = 24, start: str = '', end: str = '', literal_unit=False) -> str:
-    """
-    Generates and returns a custom divider
-
-    :param unit: str containing a repeating unit
-    :param length: The maximum length that will not be exceeded (default: 24)
-    :param start: optional starting string
-    :param end: optional ending string
-    :param literal_unit: if True will not try to break unit down into smaller repeating subunits
-    :return: a custom created divider
-    :rtype: str
-
-    :Example:
-
-    custom_div = make_div(unit='=-', length=40, start='<', end='=>')
-
-    note:: The generated string will be terminated at the specified length regardless
-     of whether all the input strings have been fully replicated.  A unit > 1 length may
-     not be able to be replicated to extend to the full length.  In this situation, the
-     string will be shorter than the specified length.
-
-     Example: unit of 10 characters and a specified length of 25 will contain 2 units for
-      a total length of 20 characters.
-    """
-
-    # reduce the size if possible to extend closer to full length
-    if not literal_unit:
-        unit = _reduce_to_unit(unit)
-    repeats = (length - len(start + end)) // len(unit)
-
-    return (start + unit * repeats + end)[0:length]
-
-
-# reduces a repeating divider to the smallest repeating unit possible
-# example: 'XxXxXxX' -> 'Xx'
-def _reduce_to_unit(divider: str) -> str:
-    for unit_size in range(1, len(divider) // 2 + 1):
-        length = len(divider)
-        unit = divider[:unit_size]
-        remainder = length % unit_size
-
-        # ignores mismatches in final characters
-        if unit * (length // unit_size) == divider[:unit_size * (length // unit_size)]:
-            return unit
-    return divider  # return original if smaller unit not found
-
-
-# Info function
 def area4info():
-    """
-    Gets you some info about the package
-    
-    :return: Package info
-    :rtype: str
-    """    
-    info = f"Name: {name}"
-    info += f"\nAuthor: {author}"
-    info += f"\nAuthor Email: {author_email}"
-    info += f"\nDescription: {description}"
-    return info
+    return None
 
+def check():
 
-def check(__name__):
-    """
-    Tells you if the module is being run directly or being imported
-    
-    :return: If __name__ is __main__ is true or false
-    :rtype: bool
-    """
     if __name__ == "__main__":
         return True
     else:
